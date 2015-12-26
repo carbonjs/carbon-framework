@@ -159,3 +159,48 @@ app.hooks = {
 
 app.run();
 ```
+
+### Controllers
+Controllers in CarbonJS have easy-to-follow structure which helps you organize application logic. They're nothing more than Node.js modules with specific structure as below:
+
+```js
+module.exports = function() {
+	return {
+		indexAction: {
+			init: function(req, res) {
+				// this code gets execute regardless of the method and it's optional (you don't need to use it 
+				// if it's not necessary)
+				// this is good place to define page title or some other code not bound to specific method
+			},
+			delete: function(req, res) {
+				// code for DELETE HTTP method goes; it's optional
+			},
+			get: function(req, res) {
+				// code for GET HTTP method goes; it's optional
+			},
+			post: function(req, res) {
+				// code for POST HTTP method goes; it's optional
+			},
+			put: function(req, res) {
+				// code for PUT HTTP method goes; it's optional
+			}
+		}
+	}
+}
+```
+
+Controller in CarbonJS needs to return an object which is nothing more than a list of actions defined for that controller. Under each action you need to define one or more HTTP method which will be executed by your application. There is a special `init` case which is not an HTTP method but it will be executed before any HTTP method.
+
+To render specific view script all you have to do is:
+
+```js
+	...
+	indexAction: {
+		get: function(req, res) {
+			res.render("scripts/index", {
+				some: "data"
+			});
+		}
+	}
+	...
+```
