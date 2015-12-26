@@ -109,3 +109,53 @@ There are few options you can configure before your execute your application and
   * `port` [`Integer`] - Defaults to `80`
 * `session` [`Object`] - CarbonJS uses `express-session` for session handling and here you can pass options to it.
 
+### Custom initialization
+CarbonJS gives you ability to run any code during the bootstraping of your application which is executed only once during this process. Here you can put things like setting up database connection or ACL or anything else. You can define functions through `inits` object provided by CarbonJS.
+
+```js
+var app = require("carbon-framework");
+
+app.inits = {
+	initDatabase: function() {
+		// code to init database goes here
+	},
+	setSomethingForEachRequest: function() {
+		app.use(function(req, res, next) { // CarbonJS extends ExpressJS's `use` function
+			// code to do something goes here
+			
+			next();
+		});
+	}
+};
+
+app.run();
+```
+
+### Hooks
+Hooks are special events that occur during the lifetime of your application and they give you a way to execute custom code when they happen. Currently there are 2 types of hooks in CarbonJS: `errors` and `preAction`.
+
+The `errors` hook occur when there is an error in your application and currently it recognizes 2 errors: `notFound` (error 404 when route can't be found) and `serverError` (error 500 when there is a problem with your application). This allows you to handle errors gracefully like displaying custom templates or sending an email to the administrator of your application.
+
+The `preAction` hook allows you to specify one or more functions which will be executed before each action. For example here you can put the logic which checks whether current user is allowed to access currently routed action or not.
+
+```js
+var app = require("carbon-framework");
+
+app.hooks = {
+	errors: {
+		notFound: function(req, res, next) {
+			// handle 404 error
+		},
+		serverError: function(err, req, res, next) {
+			// handle 500 error
+		}
+	},
+	preAction: {
+		checkAcl: function(req, res, next) {
+			// Access control logic goes here
+		}
+	}
+};
+
+app.run();
+```
