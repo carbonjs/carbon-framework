@@ -11,7 +11,7 @@ Running a website with CarbonJS is even easier: just set some basic parameters s
 npm install carbon-framework [--save]
 ```
 
-## Project structure
+### Project structure
 Even though CarbonJS is a use-as-you-wish framework it requires that you follow some very basic rules when it comes to structuring your project. This is bare minimum that is required to run your project:
 
 ```
