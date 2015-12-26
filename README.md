@@ -23,7 +23,7 @@ app.run({
 		port: 1234
 	}
 }, function() {
-	console.log("Timelinity is running on port " + app.server.address().port + ".");
+	console.log("Server is now running on port " + app.server.address().port + ".");
 });
 
 module.exports = exports = app;
