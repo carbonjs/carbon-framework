@@ -25,11 +25,12 @@ Project root
    └─ scripts
 ```
 
+* `library` - Keep all your code related to your application organized under one directory.
 * `library/helpers` - Contains application-level helpers which will be available through your application. For example, here you can put parts of code that will be reused all the time such as a helper to render header or footer of your application.
 * `views/helper` - Contains view templates of your helpers (if needed).
 * `views/layout` - Contains view layouts for your application.
 * `views/scripts` - Contains view templates of the application-level pages such as 404 or 500 errors.
-* `modules` - This is a special root folder for all of your modules.
+* `modules` - This is a special root directory for all of your modules.
 
 One of the best things regarding CarbonJS is you can nest as much modules as you need. Take a look at the following sample project structure:
 
