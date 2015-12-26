@@ -94,4 +94,18 @@ app.run({
 module.exports = exports = app;
 ```
 
+### Configuration
+There are few options you can configure before your execute your application and which you set by pass them to the `run` function. These options include
+
+* `baseDomain` [`String`] - Base domain for your application which is used by the router to generate full URLs to your resources.
+* `express` [`Object`] - Since CarbonJS is based on ExpressJS you can manually pass options to the ExpressJS framework.
+* `overrides`
+  * `absoluteRequire` [`Boolean`] - Overrides the `require` function which is used to load modules in such way that you can load Node.js modules from any CarbonJS module regardless of the depth the CarbonJS module (for example it allows you to simply load Node.js module `var Users = require("/models/db/users")`).
+* `paths`
+  * `base` [`String`] - Base path to your application; usually you don't need touch this.
+  * `library` [`String`] - Path to the library directory (defaults to `library`)
+* `server`
+  * `hostname` [`String`] - Defaults to `localhost`
+  * `port` [`Integer`] - Defaults to `80`
+* `session` [`Object`] - CarbonJS uses `express-session` for session handling and here you can pass options to it.
 
