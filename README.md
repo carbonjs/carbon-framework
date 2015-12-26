@@ -204,3 +204,41 @@ To render specific view script all you have to do is:
 	}
 	...
 ```
+
+### Routing
+CarbonJS has it's own router which does the job of matching specific routes to the appropriate controller-action. Usually you don't need to access the router directly but you can:
+
+```js
+var app = require("carbon-framework");
+var router = app.Router;
+```
+
+To make the CarbonJS framework do as much work for you as possible, routes can be defined in a configuration file from where they'll be passed to the router. File name must be `routes.js` and it must reside inside `config` folder either in the root directory of your project or inside CarbonJS modules. The structure for this file is:
+
+```js
+module.exports = {
+	"auth-login": {
+        route: "/login",
+        module: "auth:local",
+        controller: "login",
+        action: "login",
+        sitemap: {
+            priority: 0.9,
+            frequency: "daily"
+        }
+	},
+	"auth-logout": {
+        route: "/logout",
+        module: "auth:local",
+        controller: "login",
+        action: "logout"
+    }
+}
+```
+
+As you can see we've defined two routes: 
+* `auth-login` which responds to the `/login` URL and which executes `login` action from the `login` controller found under modules `auth/login`.
+* `auth-logout` which responds to the `/logout` URL and which executes `logout` action from the `login` controller found under modules `auth/login`.
+* 
+
+### Helpers
