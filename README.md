@@ -11,6 +11,70 @@ Running a website with CarbonJS is even easier: just set some basic parameters s
 npm install carbon-framework [--save]
 ```
 
+## Project structure
+Even though CarbonJS is a use-as-you-wish framework it requires that you follow some very basic rules when it comes to structuring your project. This is bare minimum that is required to run your project:
+
+```
+Project root
+├─ library
+   └─ helpers
+├─ modules
+└─ views
+   ├─ helpers
+   ├─ layouts
+   └─ scripts
+```
+
+* `library/helpers` - Contains application-level helpers which will be available through your application. For example, here you can put parts of code that will be reused all the time such as a helper to render header or footer of your application.
+* `views/helper` - Contains view templates of your helpers (if needed).
+* `views/layout` - Contains view layouts for your application.
+* `views/scripts` - Contains view templates of the application-level pages such as 404 or 500 errors.
+* `modules` - This is a special root folder for all of your modules.
+
+One of the best things regarding CarbonJS is you can nest as much modules as you need. Take a look at the following sample project structure:
+
+```
+Project root
+└─ modules
+   ├─ admin
+   │  └─ modules
+   │     ├─ category
+   │     │  ├─ config
+   │     │  ├─ controllers
+   │     │  ├─ forms
+   │     │  └─ views
+   │     ├─ products
+   │     │  ├─ config
+   │     │  ├─ controllers
+   │     │  ├─ forms
+   │     │  └─ views
+   │     └─ users
+   │        ├─ config
+   │        ├─ controllers
+   │        ├─ forms
+   │        └─ views
+   ├─ auth
+   │  └─ modules
+   │     ├─ facebook
+   │     │  ├─ config
+   │     │  └─ controllers
+   │     ├─ local
+   │     │  ├─ config
+   │     │  ├─ controllers
+   │     │  ├─ forms
+   │     │  └─ views
+   │     └─ twitter
+   │        ├─ config
+   │        └─ controllers
+   └─ default
+      ├─ config
+      ├─ controllers
+      ├─ forms
+      └─ views
+```
+
+As already said each module can have its own set of modules, configs, forms etc. This allows you to create truly modular web applications and makes reusing modules in another project easier than ever.
+
 ### Bootstraping
 In your main application file include `carbon-framework`, set some startup options and execute `run` function which is the single entry point to the framework and which takes over all the hard work for you.
 
@@ -29,16 +93,4 @@ app.run({
 module.exports = exports = app;
 ```
 
-## Project structure
-Even though CarbonJS is a use-as-you-wish framework it requires that you follow some very basic rules when it comes to structuring your project.
 
-```
-Project root
-├─ library
-   └─ helpers
-├─ modules
-└─ views
-   ├─ helpers
-   ├─ layouts
-   └─ scripts
-```
