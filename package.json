@@ -1,6 +1,6 @@
 {
   "name": "carbon-framework",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": " Modular MVC framework for Node.js based on Zend Framework ",
   "author": {
     "name": "Amir Ahmetovic",
