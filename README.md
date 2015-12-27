@@ -19,6 +19,7 @@ Project root
 ├─ library
    └─ helpers
 ├─ modules
+├─ public
 └─ views
    ├─ helpers
    ├─ layouts
@@ -27,6 +28,7 @@ Project root
 
 * `library` - Keep all your code related to your application organized under one directory.
 * `library/helpers` - Contains application-level helpers which will be available through your application. For example, here you can put parts of code that will be reused all the time such as a helper to render header or footer of your application.
+* `public` - Contains all files which need to be accessible from the client side (e.g. images, CSS & JS files etc.)
 * `views/helper` - Contains view templates of your helpers (if needed).
 * `views/layout` - Contains view layouts for your application.
 * `views/scripts` - Contains view templates of the application-level pages such as 404 or 500 errors.
@@ -239,6 +241,56 @@ module.exports = {
 As you can see we've defined two routes: 
 * `auth-login` which responds to the `/login` URL and which executes `login` action from the `login` controller found under modules `auth/login`.
 * `auth-logout` which responds to the `/logout` URL and which executes `logout` action from the `login` controller found under modules `auth/login`.
-* 
 
 ### Helpers
+CarbonJS comes with few handy helpers which help you get started fast but you can also write your own. Helpers are accessible in both controllers and views. What they do is help you organize parts of code which you'd repeat over and over again or parts of code for which you'd like to separate certain logic.
+
+#### HeadLink helper
+The `HeadLink` helper is used when you want to `link` HTML element to your view layouts or scripts. Usually during the bootstraping of your application you'll define appropriate CSS stylesheet files that will style your application or maybe add a favicon.
+
+```js
+var app = require("carbon-framework");
+
+app.inits = {
+	initMyStylesheets: function() {
+		app.use(function(req, res, next) {
+			res
+				.helper("headLink")
+				.setShortcutIcon("/favicon.png")
+				.appendStylesheet("/assets/css/style.css")
+				.appendStylesheet("//www.external.com/styles/style1.css")
+			;
+		});
+	}
+}
+```
+
+You can also modify `HeadLink` from within controllers which will make changes to the view only for that action:
+
+```js
+	...
+	indexAction: {
+		init: function(req, res) {
+			res.helper("headLink").appendStylesheet("/assets/css/index.css");
+		},
+		get: function(req, res) {
+			res.helper("headLink").appendStylesheet("/assets/css/index-get.css");
+
+			res.render("scripts/index", {
+				some: "data"
+			});
+		}
+	}
+	...
+```
+
+To output `HeadLink` to your view layouts and/or scripts all you have to do is call `HeadLink` helper from the view template:
+
+```Jade
+doctype html
+	html
+		head
+			!= helper("headLink")
+		body
+			...
+```
