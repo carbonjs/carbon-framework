@@ -351,3 +351,53 @@ doctype html
 		body
 			...
 ```
+
+**HeadScript helper**
+
+The `HeadScript` helper is used when you want to add `script` HTML element to your view layouts or scripts.
+
+```js
+var app = require("carbon-framework");
+
+app.inits = {
+	initMyScripts: function() {
+		app.use(function(req, res, next) {
+			res
+				.helper("headScript")
+				.appendScript("/assets/js/script.js")
+				.appendScript("//www.external.com/scripts/script.js")
+			;
+		});
+	}
+}
+```
+
+You can also modify `HeadScript` from within controllers which will make changes to the view only for that action:
+
+```js
+	...
+	indexAction: {
+		init: function(req, res) {
+			res.helper("headScript").appendScript("/assets/js/index.js");
+		},
+		get: function(req, res) {
+			res.helper("headScript").appendScript("/assets/js/index-get.js");
+
+			res.render("scripts/index", {
+				some: "data"
+			});
+		}
+	}
+	...
+```
+
+To output `HeadScript` to your view layouts and/or scripts all you have to do is call `HeadScript` helper from the view template:
+
+```Jade
+doctype html
+	html
+		head
+			!= helper("headScript")
+		body
+			...
+```
