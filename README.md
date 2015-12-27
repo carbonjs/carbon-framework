@@ -446,3 +446,69 @@ doctype html
 		body
 			...
 ```
+
+**Navigation helper**
+The `Navigation` helper is there to help you make client-side navigation which you can reuse over and over again without having to manually write HTML to all script where you need it. To make it work you must put all module-relevant navigation inside `navigation.js` which needs to be placed in the module's `config` directory. The structure for this file is:
+
+```js
+	module.exports = {
+		"my navigation": {
+			class: "navbar",
+			children: [
+				{
+					label: "Categories",
+					uri: "#",
+					children: [
+						{
+							label: "Category 1",
+							uri: "/categories/1",
+						},
+						{
+							label: "Category 2",
+							uri: "/categories/2",
+						}
+					]
+				},
+				{
+					label: "Login",
+					class: "login-class",
+					route: "auth-login",
+				}
+			]
+		}
+	}
+```
+
+As you can see this file consists of an object which we'll reference inside the view by its name `my navigation`. Then we define all menu item under this menu. You can either use `uri` to directly specify URL or `route` which specifies route name that is added to the `Router` previously.
+
+To output this navigation to your view layouts and/or scripts all you have to do is call `Navigation` helper from the view template:
+
+```Jade
+doctype html
+	html
+		head
+			!= helper("navigation", "my navigation")
+		body
+			...
+```
+
+This will generate the following HTML output:
+
+```HTML
+<ul class="navbar">
+	<li>
+		<a href="#">Categories</a>
+		<ul>
+			<li>
+				<a href="/categories/1">Category 1</a>
+			</li>
+			<li>
+				<a href="/categories/2">Category 2</a>
+			</li>
+		</ul>
+	</li>
+	<li>
+		<a class="login-class" href="/login">Login</a>
+	</li>
+</ul>
+```
