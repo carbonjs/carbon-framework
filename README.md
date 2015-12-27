@@ -402,6 +402,7 @@ doctype html
 			...
 ```
 
+
 **HeadTitle helper**
 
 The `HeadTitle` helper is used when you want to add `title` HTML element to your view layouts or scripts.
