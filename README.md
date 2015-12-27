@@ -518,7 +518,7 @@ As you can see it accepts 3 parameters of which the last 2 are optional:
 
 You can generate URL from within the view like this:
 ```Jade
-!= helper("url").getUrl("auth-login");
+!= helper("url").getUrl("auth-login")
 ```
 
 or
