@@ -507,3 +507,30 @@ This will generate the following HTML output:
 	</li>
 </ul>
 ```
+
+#### Url helper
+The `Url` helper is used when you want to generate a working URL from the route added to the `Router`. It can be called either through `response` or directly from the CarbonJS. It's a special helper which is a collecton of functions to help you handle routes. The main function is `getUrl` with the prototype: `exports.getUrl = function(routeName, params, fullUrl)`.
+
+As you can see it accepts 3 parameters of which the last 2 are optional:
+* `routeName` [`String`] - Name of the route added to the `Router`.
+* `params` [`Object`] - An object which sets parameters to the route if it has them.
+* `fullUrl` [`Boolean`] - Set to `true` if you want to generate URL with a domain name (the one you specify in the `baseDomain` option before your bootstrap your application).
+
+You can generate URL from within the view like this:
+```Jade
+!= helper("url").getUrl("auth-login");
+```
+
+or
+
+```Jade
+a(href=(helper("url").getUrl("auth-login")))
+```
+
+You can also generate URL from any other part of your application like this:
+
+```js
+var app = require("carbon-framework");
+
+var fullLoginUrl = app.Helper.Url.getUrl("auth-login", {}, true);
+```
