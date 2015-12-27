@@ -401,3 +401,47 @@ doctype html
 		body
 			...
 ```
+
+**HeadTitle helper**
+
+The `HeadTitle` helper is used when you want to add `title` HTML element to your view layouts or scripts.
+
+```js
+var app = require("carbon-framework");
+
+app.inits = {
+	initMyTitle: function() {
+		app.use(function(req, res, next) {
+			res
+				.helper("headTitle")
+				.setPrefix("Look")
+				.setSuffix("My Awesome Website")
+				.setSeparator("-")
+			;
+		});
+	}
+}
+```
+
+You can also modify `HeadTitle` from within controllers which will make changes to the view only for that action:
+
+```js
+	...
+	indexAction: {
+		init: function(req, res) {
+			res.helper("headTitle").setTitle("My page title");
+		}
+	}
+	...
+```
+
+To output `HeadTitle` to your view layouts and/or scripts all you have to do is call `HeadTitle` helper from the view template:
+
+```Jade
+doctype html
+	html
+		head
+			!= helper("headTitle")
+		body
+			...
+```
