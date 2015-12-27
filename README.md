@@ -245,8 +245,9 @@ As you can see we've defined two routes:
 ### Helpers
 CarbonJS comes with few handy helpers which help you get started fast but you can also write your own. Helpers are accessible in both controllers and views. What they do is help you organize parts of code which you'd repeat over and over again or parts of code for which you'd like to separate certain logic.
 
-#### HeadLink helper
-The `HeadLink` helper is used when you want to `link` HTML element to your view layouts or scripts. Usually during the bootstraping of your application you'll define appropriate CSS stylesheet files that will style your application or maybe add a favicon.
+**HeadLink helper**
+
+The `HeadLink` helper is used when you want to add `link` HTML element to your view layouts or scripts. Usually during the bootstraping of your application you'll define appropriate CSS stylesheet files that will style your application or maybe add a favicon.
 
 ```js
 var app = require("carbon-framework");
@@ -291,6 +292,62 @@ doctype html
 	html
 		head
 			!= helper("headLink")
+		body
+			...
+```
+
+**HeadMeta helper**
+
+The `HeadMeta` helper is used when you want to add `meta` HTML element to your view layouts or scripts.
+
+```js
+var app = require("carbon-framework");
+
+app.inits = {
+	initMyMeta: function() {
+		app.use(function(req, res, next) {
+			res
+				.helper("headMeta")
+				.appendMeta({
+					charset: "utf-8"
+				})
+				.appendMeta({
+					"http-equiv": "X-UA-Compatible",
+					content: "IE=edge"
+				})
+				.appendMeta("viewport", "width=device-width, initial-scale=1")
+			;
+		});
+	}
+}
+```
+
+You can also modify `HeadMeta` from within controllers which will make changes to the view only for that action:
+
+```js
+	...
+	indexAction: {
+		init: function(req, res) {
+			res.helper("headMeta").appendMeta({ property: "og:title", content: "My page title" });
+		},
+		get: function(req, res) {
+			res.helper("headMeta").appendMeta({ property: "og:description", content: "My description" });
+
+			res.render("scripts/index", {
+				some: "data"
+			});
+		}
+	}
+	...
+```
+
+To output `HeadMeta` to your view layouts and/or scripts all you have to do is call `HeadMeta` helper from the view template:
+
+```Jade
+doctype html
+	html
+		head
+			!= helper("headMeta")
 		body
 			...
 ```
