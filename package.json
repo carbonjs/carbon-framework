@@ -1,6 +1,6 @@
 {
   "name": "carbon-framework",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": " Modular MVC framework for Node.js based on Zend Framework ",
   "author": {
     "name": "Amir Ahmetovic",
@@ -11,14 +11,14 @@
     "mvc"
   ],
   "licence": "MIT",
-  "homepage": "https://github.com/choxnox/carbon-framework",
+  "homepage": "https://github.com/carbonjs/carbon-framework",
   "main": "./index.js",
   "bugs": {
-    "url": "https://github.com/choxnox/carbon-framework/issues"
+    "url": "https://github.com/carbonjs/carbon-framework/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/choxnox/carbon-framework.git"
+    "url": "git://github.com/carbonjs/carbon-framework.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
