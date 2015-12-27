@@ -1,19 +1,17 @@
-# CarbonJS Framework / `carbon-framework`
+# CarbonJS Framework / `carbon-framework` <a id="intro"></a>
 CarbonJS is a modular MVC framework for NodeJS based on Zend Framework which uses ExpressJS in the background. It truly is modular framework which means each module can have it's own controllers, views, layouts, routes, navigation, forms, models, configuration and more. Each module can function as a separate entity or as a part of a larger system. The best of all is that modules are plug-and-play so you can easily copy modules that you already have in one project to another project without any configuration whatsoever.
-
-[AAAA](#getting-started)
 
 Imagine you have an `auth` module in one project and within that module you have modules `local` (login/signup via username/email address and password), `facebook` (connect to your auth system through Facebook) and `twitter` (connect to your auth system through Twitter). Now imagine that each of these modules are already fully functional. When in your next project you want to have an authorization system all you have to do is simply copy module from your previous project. You don't want Twitter authorization? No problem, simply remove `twitter` module from your new project.
 
 Running a website with CarbonJS is even easier: just set some basic parameters such as hostname and port, domains used etd. and you're ready to rock.
 
 ## Getting started <a id="getting-started"></a>
-### Installation
+### Installation <a id="installation"></a>
 ```
 npm install carbon-framework [--save]
 ```
 
-### Project structure
+### Project structure <a id="project-structure"></a>
 Even though CarbonJS is a use-as-you-wish framework it requires that you follow some very basic rules when it comes to structuring your project. This is bare minimum that is required to run your project:
 
 ```
@@ -80,7 +78,7 @@ Project root
 
 As already said each module can have its own set of modules, configs, forms etc. This allows you to create truly modular web applications and makes reusing modules in another project easier than ever.
 
-### Bootstraping
+### Bootstrapping <a id="bootstrapping"></a>
 In your main application file include `carbon-framework`, set some startup options and execute `run` function which is the single entry point to the framework and which takes over all the hard work for you.
 
 ```js
@@ -98,7 +96,7 @@ app.run({
 module.exports = exports = app;
 ```
 
-### Configuration
+### Configuration <a id="configuration"></a>
 There are few options you can configure before your execute your application and which you set by pass them to the `run` function. These options include
 
 * `baseDomain` [`String`] - Base domain for your application which is used by the router to generate full URLs to your resources.
@@ -113,7 +111,7 @@ There are few options you can configure before your execute your application and
   * `port` [`Integer`] - Defaults to `80`
 * `session` [`Object`] - CarbonJS uses `express-session` for session handling and here you can pass options to it.
 
-### Custom initialization
+### Custom initialization <a id="custom-init"></a>
 CarbonJS gives you ability to run any code during the bootstraping of your application which is executed only once during this process. Here you can put things like setting up database connection or ACL or anything else. You can define functions through `inits` object provided by CarbonJS.
 
 ```js
@@ -135,7 +133,7 @@ app.inits = {
 app.run();
 ```
 
-### Hooks
+### Hooks <a id="hooks"></a>
 Hooks are special events that occur during the lifetime of your application and they give you a way to execute custom code when they happen. Currently there are 2 types of hooks in CarbonJS: `errors` and `preAction`.
 
 The `errors` hook occur when there is an error in your application and currently it recognizes 2 errors: `notFound` (error 404 when route can't be found) and `serverError` (error 500 when there is a problem with your application). This allows you to handle errors gracefully like displaying custom templates or sending an email to the administrator of your application.
@@ -164,7 +162,7 @@ app.hooks = {
 app.run();
 ```
 
-### Controllers
+### Controllers <a id="controllers"></a>
 Controllers in CarbonJS have easy-to-follow structure which helps you organize application logic. They're nothing more than Node.js modules with specific structure as below:
 
 ```js
@@ -209,7 +207,7 @@ To render specific view script all you have to do is:
 	...
 ```
 
-### Routing
+### Routing <a id="routing"></a>
 CarbonJS has it's own router which does the job of matching specific routes to the appropriate controller-action. Usually you don't need to access the router directly but you can:
 
 ```js
@@ -244,10 +242,10 @@ As you can see we've defined two routes:
 * `auth-login` which responds to the `/login` URL and which executes `login` action from the `login` controller found under modules `auth/login`.
 * `auth-logout` which responds to the `/logout` URL and which executes `logout` action from the `login` controller found under modules `auth/login`.
 
-### Helpers
+### Helpers <a id="helpers"></a>
 CarbonJS comes with few handy helpers which help you get started fast but you can also write your own. Helpers are accessible in both controllers and views. What they do is help you organize parts of code which you'd repeat over and over again or parts of code for which you'd like to separate certain logic.
 
-#### HeadLink helper
+#### HeadLink helper <a id="headlink-helper"></a>
 The `HeadLink` helper is used when you want to add `link` HTML element to your view layouts or scripts. Usually during the bootstraping of your application you'll define appropriate CSS stylesheet files that will style your application or maybe add a favicon.
 
 ```js
@@ -297,7 +295,7 @@ doctype html
 			...
 ```
 
-#### HeadMeta helper
+#### HeadMeta helper <a id="headmeta-helper"></a>
 The `HeadMeta` helper is used when you want to add `meta` HTML element to your view layouts or scripts.
 
 ```js
@@ -352,7 +350,7 @@ doctype html
 			...
 ```
 
-#### HeadScript helper
+#### HeadScript helper <a id="headscript-helper"></a>
 The `HeadScript` helper is used when you want to add `script` HTML element to your view layouts or scripts.
 
 ```js
@@ -401,7 +399,7 @@ doctype html
 			...
 ```
 
-#### HeadTitle helper
+#### HeadTitle helper <a id="headtitle-helper"></a>
 The `HeadTitle` helper is used when you want to add `title` HTML element to your view layouts or scripts.
 
 ```js
@@ -444,7 +442,7 @@ doctype html
 			...
 ```
 
-#### Navigation helper
+#### Navigation helper <a id="navigation-helper"></a>
 The `Navigation` helper is there to help you make client-side navigation which you can reuse over and over again without having to manually write HTML to all script where you need it. To make it work you must put all module-relevant navigation inside `navigation.js` which needs to be placed in the module's `config` directory. The structure for this file is:
 
 ```js
@@ -510,7 +508,7 @@ This will generate the following HTML output:
 </ul>
 ```
 
-#### Url helper
+#### Url helper <a id="url-helper"></a>
 The `Url` helper is used when you want to generate a working URL from the route added to the `Router`. It can be called either through `response` or directly from the CarbonJS. It's a special helper which is a collecton of functions to help you handle routes. The main function is `getUrl` with the prototype: `exports.getUrl = function(routeName, params, fullUrl)`.
 
 As you can see it accepts 3 parameters of which the last 2 are optional:
@@ -537,8 +535,8 @@ var app = require("carbon-framework");
 var fullLoginUrl = app.Helper.Url.getUrl("auth-login", {}, true);
 ```
 
-## Who is using it
+## Who is using it <a id="who-is-using-it"></a>
 The CarbonJS is running one of our web applications: [Timelinity](https://www.timelinity.com)
 
-## Contributing
+## Contributing <a id="contributing"></a>
 If you're willing to contribute to this project feel free to report issues, send pull request, write tests or simply contact me - [Amir Ahmetovic](https://github.com/choxnox)
