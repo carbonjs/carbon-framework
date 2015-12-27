@@ -245,8 +245,7 @@ As you can see we've defined two routes:
 ### Helpers
 CarbonJS comes with few handy helpers which help you get started fast but you can also write your own. Helpers are accessible in both controllers and views. What they do is help you organize parts of code which you'd repeat over and over again or parts of code for which you'd like to separate certain logic.
 
-**HeadLink helper**
-
+#### HeadLink helper
 The `HeadLink` helper is used when you want to add `link` HTML element to your view layouts or scripts. Usually during the bootstraping of your application you'll define appropriate CSS stylesheet files that will style your application or maybe add a favicon.
 
 ```js
@@ -296,8 +295,7 @@ doctype html
 			...
 ```
 
-**HeadMeta helper**
-
+#### HeadMeta helper
 The `HeadMeta` helper is used when you want to add `meta` HTML element to your view layouts or scripts.
 
 ```js
@@ -352,8 +350,7 @@ doctype html
 			...
 ```
 
-**HeadScript helper**
-
+#### HeadScript helper
 The `HeadScript` helper is used when you want to add `script` HTML element to your view layouts or scripts.
 
 ```js
@@ -402,9 +399,7 @@ doctype html
 			...
 ```
 
-
-**HeadTitle helper**
-
+#### HeadTitle helper
 The `HeadTitle` helper is used when you want to add `title` HTML element to your view layouts or scripts.
 
 ```js
@@ -447,7 +442,7 @@ doctype html
 			...
 ```
 
-**Navigation helper**
+#### Navigation helper
 The `Navigation` helper is there to help you make client-side navigation which you can reuse over and over again without having to manually write HTML to all script where you need it. To make it work you must put all module-relevant navigation inside `navigation.js` which needs to be placed in the module's `config` directory. The structure for this file is:
 
 ```js
