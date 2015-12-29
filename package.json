@@ -1,6 +1,6 @@
 {
   "name": "carbon-framework",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": " Modular MVC framework for Node.js based on Zend Framework ",
   "homepage": "http://www.carbonjs.com/",
   "author": {
@@ -8,8 +8,16 @@
     "email": "chox.nox@gmail.com"
   },
   "keywords": [
+    "api",
+    "app",
+    "carbon",
     "framework",
-    "mvc"
+    "mvc",
+    "rails",
+    "rest",
+    "restful",
+    "router",
+    "sinatra"
   ],
   "licence": "MIT",
   "homepage": "https://github.com/carbonjs/carbon-framework",
