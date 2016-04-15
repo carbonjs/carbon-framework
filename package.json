@@ -1,8 +1,8 @@
 {
   "name": "carbon-framework",
-  "version": "0.1.7",
+  "version": "0.1.15",
   "description": " Modular MVC framework for Node.js based on Zend Framework ",
-  "homepage": "http://www.carbonjs.com/",
+  "homepage": "https://github.com/carbonjs/carbon-framework",
   "author": {
     "name": "Amir Ahmetovic",
     "email": "chox.nox@gmail.com"
@@ -20,7 +20,6 @@
     "sinatra"
   ],
   "licence": "MIT",
-  "homepage": "https://github.com/carbonjs/carbon-framework",
   "main": "./index.js",
   "bugs": {
     "url": "https://github.com/carbonjs/carbon-framework/issues"
@@ -40,6 +39,7 @@
     "express": "^4.13.3",
     "express-session": "^1.12.1",
     "jade": "^1.11.0",
-    "lodash": "^3.10.1"
+    "lodash": "latest",
+    "multer": "^1.1.0"
   }
 }
