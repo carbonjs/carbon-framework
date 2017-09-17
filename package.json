@@ -1,7 +1,7 @@
 {
   "name": "carbon-framework",
-  "version": "0.1.24",
-  "description": " Modular MVC framework for Node.js based on Zend Framework ",
+  "version": "1.0.0",
+  "description": "Modular MVC framework for Node.js",
   "homepage": "https://github.com/carbonjs/carbon-framework",
   "author": {
     "name": "Amir Ahmetovic",
@@ -29,7 +29,7 @@
     "url": "git://github.com/carbonjs/carbon-framework.git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "dependencies": {
     "async": "^1.5.0",
@@ -41,5 +41,10 @@
     "jade": "^1.11.0",
     "lodash": "latest",
     "multer": "^1.1.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.0",
+    "mocha": "^3.4.2",
+    "supertest": "^3.0.0"
   }
 }
