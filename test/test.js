@@ -6,15 +6,22 @@ var expect = chai.expect;
 describe("Framework", function() {
     this.timeout(5000);
 
-    var app;
+    var app, appConfig;
 
     beforeEach(function() {
-        app = require("../index")();
+        delete require.cache[require.resolve("../index")]
+        app = require("../index");
+
+        appConfig = {
+            paths: {
+                base: process.cwd() + "/test"
+            }
+        };
     });
 
     describe("Basics", function() {
         it("should start a server instance by default", function(done) {
-            app.run({}, function() {
+            app.run(appConfig, function() {
                 done();
             });
         });
@@ -30,7 +37,7 @@ describe("Framework", function() {
                 }
             };
 
-            app.run();
+            app.run(appConfig);
 
             request(app.server)
                 .get("/missing")
@@ -47,15 +54,10 @@ describe("Framework", function() {
                 }
             };
 
-            app.run();
-
-            app.express.get("/", function(req, res) {
-                app.unknownFunction();
-                done();
-            });
+            app.run(appConfig);
 
             request(app.server)
-                .get("/")
+                .get("/return-500")
                 .expect(500, "Server error", done)
             ;
         });
@@ -63,20 +65,16 @@ describe("Framework", function() {
 
     describe("Routing", function() {
         it("should return 200 for a known route", function(done) {
-            app.run();
-
-            app.express.get("/blog", function(req, res) {
-                res.send("blog page");
-            });
+            app.run(appConfig);
 
             request(app.server)
                 .get("/blog")
-                .expect("blog page", done)
+                .expect("Blog page", done)
             ;
         });
 
         it("should return 404 for unknown route", function(done) {
-            app.run();
+            app.run(appConfig);
 
             request(app.server)
                 .get("/")
