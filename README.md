@@ -124,7 +124,7 @@ app.inits = {
 	setSomethingForEachRequest: function() {
 		app.use(function(req, res, next) { // CarbonJS extends ExpressJS's `use` function
 			// code to do something goes here
-			
+
 			next();
 		});
 	}
@@ -170,7 +170,7 @@ module.exports = function() {
 	return {
 		indexAction: {
 			init: function(req, res) {
-				// this code gets execute regardless of the method and it's optional (you don't need to use it 
+				// this code gets execute regardless of the method and it's optional (you don't need to use it
 				// if it's not necessary)
 				// this is good place to define page title or some other code not bound to specific method
 			},
@@ -238,7 +238,7 @@ module.exports = {
 }
 ```
 
-As you can see we've defined two routes: 
+As you can see we've defined two routes:
 * `auth-login` which responds to the `/login` URL and which executes `login` action from the `login` controller found under modules `auth/login`.
 * `auth-logout` which responds to the `/logout` URL and which executes `logout` action from the `login` controller found under modules `auth/login`.
 
@@ -535,8 +535,10 @@ var app = require("carbon-framework");
 var fullLoginUrl = app.Helper.Url.getUrl("auth-login", {}, true);
 ```
 
-## Who is using it <a id="who-is-using-it"></a>
-The CarbonJS is running one of our web applications: [Timelinity](https://www.timelinity.com)
-
 ## Contributing <a id="contributing"></a>
 If you're willing to contribute to this project feel free to report issues, send pull request, write tests or simply contact me - [Amir Ahmetovic](https://github.com/choxnox)
+
+## Licence
+This software is available under the following licenses:
+
+  * MIT
