@@ -219,7 +219,7 @@ To make the CarbonJS framework do as much work for you as possible, routes can b
 
 ```js
 module.exports = {
-    "auth-login": {
+    "auth-login":
         route: "/login",
         module: "auth:local",
         controller: "login",
@@ -228,8 +228,8 @@ module.exports = {
             priority: 0.9,
             frequency: "daily"
         }
-	},
-	"auth-logout": {
+    },
+    "auth-logout": {
         route: "/logout",
         module: "auth:local",
         controller: "login",
@@ -252,47 +252,47 @@ The `HeadLink` helper is used when you want to add `link` HTML element to your v
 var app = require("carbon-framework");
 
 app.inits = {
-	initMyStylesheets: function() {
-		app.use(function(req, res, next) {
-			res
-				.helper("headLink")
-				.setShortcutIcon("/favicon.png")
-				.appendStylesheet("/assets/css/style.css")
-				.appendStylesheet("//www.external.com/styles/style1.css")
-			;
-		});
-	}
+    initMyStylesheets: function() {
+        app.use(function(req, res, next) {
+            res
+                .helper("headLink")
+                .setShortcutIcon("/favicon.png")
+                .appendStylesheet("/assets/css/style.css")
+                .appendStylesheet("//www.external.com/styles/style1.css")   
+            ;
+        });
+    }
 }
 ```
 
 You can also modify `HeadLink` from within controllers which will make changes to the view only for that action:
 
 ```js
-	...
-	indexAction: {
-		init: function(req, res) {
-			res.helper("headLink").appendStylesheet("/assets/css/index.css");
-		},
-		get: function(req, res) {
-			res.helper("headLink").appendStylesheet("/assets/css/index-get.css");
+    ...
+    indexAction: {
+        init: function(req, res) {
+            res.helper("headLink").appendStylesheet("/assets/css/index.css");
+        },
+        get: function(req, res) {
+            res.helper("headLink").appendStylesheet("/assets/css/index-get.css");
 
-			res.render("scripts/index", {
-				some: "data"
-			});
-		}
-	}
-	...
+            res.render("scripts/index", {
+                some: "data"
+            });
+        }
+    }
+    ...
 ```
 
 To output `HeadLink` to your view layouts and/or scripts all you have to do is call `HeadLink` helper from the view template:
 
 ```Jade
 doctype html
-	html
-		head
-			!= helper("headLink")
-		body
-			...
+    html
+        head
+            != helper("headLink")
+        body
+            ...
 ```
 
 #### HeadMeta helper <a id="headmeta-helper"></a>
@@ -302,52 +302,52 @@ The `HeadMeta` helper is used when you want to add `meta` HTML element to your v
 var app = require("carbon-framework");
 
 app.inits = {
-	initMyMeta: function() {
-		app.use(function(req, res, next) {
-			res
-				.helper("headMeta")
-				.appendMeta({
-					charset: "utf-8"
-				})
-				.appendMeta({
-					"http-equiv": "X-UA-Compatible",
-					content: "IE=edge"
-				})
-				.appendMeta("viewport", "width=device-width, initial-scale=1")
-			;
-		});
-	}
+    initMyMeta: function() {
+        app.use(function(req, res, next) {
+            res
+                .helper("headMeta")
+                .appendMeta({
+                    charset: "utf-8"
+                })
+                .appendMeta({
+                    "http-equiv": "X-UA-Compatible",
+                    content: "IE=edge"
+                })
+                .appendMeta("viewport", "width=device-width, initial-scale=1")
+            ;
+        });
+    }
 }
 ```
 
 You can also modify `HeadMeta` from within controllers which will make changes to the view only for that action:
 
 ```js
-	...
-	indexAction: {
-		init: function(req, res) {
-			res.helper("headMeta").appendMeta({ property: "og:title", content: "My page title" });
-		},
-		get: function(req, res) {
-			res.helper("headMeta").appendMeta({ property: "og:description", content: "My description" });
+    ...
+    indexAction: {
+        init: function(req, res) {
+            res.helper("headMeta").appendMeta({ property: "og:title", content: "My page title" });
+        },
+        get: function(req, res) {
+            res.helper("headMeta").appendMeta({ property: "og:description", content: "My description" });
 
-			res.render("scripts/index", {
-				some: "data"
-			});
-		}
-	}
-	...
+            res.render("scripts/index", {
+                some: "data"
+            });
+        }
+    }
+    ...
 ```
 
 To output `HeadMeta` to your view layouts and/or scripts all you have to do is call `HeadMeta` helper from the view template:
 
 ```Jade
 doctype html
-	html
-		head
-			!= helper("headMeta")
-		body
-			...
+    html
+        head
+            != helper("headMeta")
+        body
+            ...
 ```
 
 #### HeadScript helper <a id="headscript-helper"></a>
@@ -357,46 +357,46 @@ The `HeadScript` helper is used when you want to add `script` HTML element to yo
 var app = require("carbon-framework");
 
 app.inits = {
-	initMyScripts: function() {
-		app.use(function(req, res, next) {
-			res
-				.helper("headScript")
-				.appendScript("/assets/js/script.js")
-				.appendScript("//www.external.com/scripts/script.js")
-			;
-		});
-	}
+    initMyScripts: function() {
+        app.use(function(req, res, next) {
+            res
+                .helper("headScript")
+                .appendScript("/assets/js/script.js")
+                .appendScript("//www.external.com/scripts/script.js")
+            ;
+        });
+    }
 }
 ```
 
 You can also modify `HeadScript` from within controllers which will make changes to the view only for that action:
 
 ```js
-	...
-	indexAction: {
-		init: function(req, res) {
-			res.helper("headScript").appendScript("/assets/js/index.js");
-		},
-		get: function(req, res) {
-			res.helper("headScript").appendScript("/assets/js/index-get.js");
+    ...
+    indexAction: {
+        init: function(req, res) {
+            res.helper("headScript").appendScript("/assets/js/index.js");
+        },
+        get: function(req, res) {
+            res.helper("headScript").appendScript("/assets/js/index-get.js");
 
-			res.render("scripts/index", {
-				some: "data"
-			});
-		}
-	}
-	...
+            res.render("scripts/index", {
+                some: "data"
+            });
+        }
+    }
+    ...
 ```
 
 To output `HeadScript` to your view layouts and/or scripts all you have to do is call `HeadScript` helper from the view template:
 
 ```Jade
 doctype html
-	html
-		head
-			!= helper("headScript")
-		body
-			...
+    html
+        head
+            != helper("headScript")
+        body
+            ...
 ```
 
 #### HeadTitle helper <a id="headtitle-helper"></a>
@@ -406,72 +406,72 @@ The `HeadTitle` helper is used when you want to add `title` HTML element to your
 var app = require("carbon-framework");
 
 app.inits = {
-	initMyTitle: function() {
-		app.use(function(req, res, next) {
-			res
-				.helper("headTitle")
-				.setPrefix("Look")
-				.setSuffix("My Awesome Website")
-				.setSeparator("-")
-			;
-		});
-	}
+    initMyTitle: function() {
+        app.use(function(req, res, next) {
+            res
+                .helper("headTitle")
+                .setPrefix("Look")
+                .setSuffix("My Awesome Website")
+                .setSeparator("-")
+            ;
+        });
+    }
 }
 ```
 
 You can also modify `HeadTitle` from within controllers which will make changes to the view only for that action:
 
 ```js
-	...
-	indexAction: {
-		init: function(req, res) {
-			res.helper("headTitle").setTitle("My page title");
-		}
-	}
-	...
+    ...
+    indexAction: {
+        init: function(req, res) {
+            res.helper("headTitle").setTitle("My page title");
+        }
+    }
+    ...
 ```
 
 To output `HeadTitle` to your view layouts and/or scripts all you have to do is call `HeadTitle` helper from the view template:
 
 ```Jade
 doctype html
-	html
-		head
-			!= helper("headTitle")
-		body
-			...
+    html
+        head
+            != helper("headTitle")
+        body
+            ...
 ```
 
 #### Navigation helper <a id="navigation-helper"></a>
 The `Navigation` helper is there to help you make client-side navigation which you can reuse over and over again without having to manually write HTML to all script where you need it. To make it work you must put all module-relevant navigation inside `navigation.js` which needs to be placed in the module's `config` directory. The structure for this file is:
 
 ```js
-	module.exports = {
-		"my navigation": {
-			class: "navbar",
-			children: [
-				{
-					label: "Categories",
-					uri: "#",
-					children: [
-						{
-							label: "Category 1",
-							uri: "/categories/1",
-						},
-						{
-							label: "Category 2",
-							uri: "/categories/2",
-						}
-					]
-				},
-				{
-					label: "Login",
-					class: "login-class",
-					route: "auth-login",
-				}
-			]
-		}
-	}
+    module.exports = {
+        "my navigation": {
+            class: "navbar",
+            children: [
+                {
+                    label: "Categories",
+                    uri: "#",
+                    children: [
+                        {
+                            label: "Category 1",
+                            uri: "/categories/1",
+                        },
+                        {
+                            label: "Category 2",
+                            uri: "/categories/2",
+                        }
+                    ]
+                },
+                {
+                    label: "Login",
+                    class: "login-class",
+                    route: "auth-login",
+                }
+            ]
+        }
+    }
 ```
 
 As you can see this file consists of an object which we'll reference inside the view by its name `my navigation`. Then we define all menu item under this menu. You can either use `uri` to directly specify URL or `route` which specifies route name that is added to the `Router` previously.
@@ -480,31 +480,31 @@ To output this navigation to your view layouts and/or scripts all you have to do
 
 ```Jade
 doctype html
-	html
-		head
-			!= helper("navigation", "my navigation")
-		body
-			...
+    html
+        head
+            != helper("navigation", "my navigation")
+        body
+            ...
 ```
 
 This will generate the following HTML output:
 
 ```HTML
 <ul class="navbar">
-	<li>
-		<a href="#">Categories</a>
-		<ul>
-			<li>
-				<a href="/categories/1">Category 1</a>
-			</li>
-			<li>
-				<a href="/categories/2">Category 2</a>
-			</li>
-		</ul>
-	</li>
-	<li>
-		<a class="login-class" href="/login">Login</a>
-	</li>
+    <li>
+        <a href="#">Categories</a>
+        <ul>
+            <li>
+                <a href="/categories/1">Category 1</a>
+            </li>
+            <li>
+                <a href="/categories/2">Category 2</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a class="login-class" href="/login">Login</a>
+    </li>
 </ul>
 ```
 
