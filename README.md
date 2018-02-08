@@ -118,16 +118,16 @@ CarbonJS gives you ability to run any code during the bootstraping of your appli
 var app = require("carbon-framework");
 
 app.inits = {
-	initDatabase: function() {
-		// code to init database goes here
-	},
-	setSomethingForEachRequest: function() {
-		app.use(function(req, res, next) { // CarbonJS extends ExpressJS's `use` function
-			// code to do something goes here
+    initDatabase: function() {
+        // code to init database goes here
+    },
+    setSomethingForEachRequest: function() {
+        app.use(function(req, res, next) { // CarbonJS extends ExpressJS's `use` function
+            // code to do something goes here
 
-			next();
-		});
-	}
+            next();
+        });
+    }
 };
 
 app.run();
@@ -144,19 +144,19 @@ The `preAction` hook allows you to specify one or more functions which will be e
 var app = require("carbon-framework");
 
 app.hooks = {
-	errors: {
-		notFound: function(req, res, next) {
-			// handle 404 error
-		},
-		serverError: function(err, req, res, next) {
-			// handle 500 error
-		}
-	},
-	preAction: {
-		checkAcl: function(req, res, next) {
-			// Access control logic goes here
-		}
-	}
+    errors: {
+        notFound: function(req, res, next) {
+            // handle 404 error
+        },
+        serverError: function(err, req, res, next) {
+            // handle 500 error
+        }
+    },
+    preAction: {
+        checkAcl: function(req, res, next) {
+            // Access control logic goes here
+        }
+    }
 };
 
 app.run();
@@ -167,27 +167,27 @@ Controllers in CarbonJS have easy-to-follow structure which helps you organize a
 
 ```js
 module.exports = function() {
-	return {
-		indexAction: {
-			init: function(req, res) {
-				// this code gets execute regardless of the method and it's optional (you don't need to use it
-				// if it's not necessary)
-				// this is good place to define page title or some other code not bound to specific method
-			},
-			delete: function(req, res) {
-				// code for DELETE HTTP method goes; it's optional
-			},
-			get: function(req, res) {
-				// code for GET HTTP method goes; it's optional
-			},
-			post: function(req, res) {
-				// code for POST HTTP method goes; it's optional
-			},
-			put: function(req, res) {
-				// code for PUT HTTP method goes; it's optional
-			}
-		}
-	}
+    return {
+        indexAction: {
+            init: function(req, res) {
+                // this code gets execute regardless of the method and it's optional (you don't need to use it
+                // if it's not necessary)
+                // this is good place to define page title or some other code not bound to specific method
+            },
+            delete: function(req, res) {
+                // code for DELETE HTTP method goes; it's optional
+            },
+            get: function(req, res) {
+                // code for GET HTTP method goes; it's optional
+            },
+            post: function(req, res) {
+                // code for POST HTTP method goes; it's optional
+            },
+            put: function(req, res) {
+                // code for PUT HTTP method goes; it's optional
+            }
+        }
+    }
 }
 ```
 
@@ -196,15 +196,15 @@ Controller in CarbonJS needs to return an object which is nothing more than a li
 To render specific view script all you have to do is:
 
 ```js
-	...
-	indexAction: {
-		get: function(req, res) {
-			res.render("scripts/index", {
-				some: "data"
-			});
-		}
-	}
-	...
+    ...
+    indexAction: {
+        get: function(req, res) {
+            res.render("scripts/index", {
+                some: "data"
+            });
+        }
+    }
+    ...
 ```
 
 ### Routing <a id="routing"></a>
@@ -219,7 +219,7 @@ To make the CarbonJS framework do as much work for you as possible, routes can b
 
 ```js
 module.exports = {
-	"auth-login": {
+    "auth-login": {
         route: "/login",
         module: "auth:local",
         controller: "login",
