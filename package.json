@@ -1,6 +1,6 @@
 {
   "name": "carbon-framework",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Modular MVC framework for Node.js",
   "homepage": "https://github.com/carbonjs/carbon-framework",
   "author": {
